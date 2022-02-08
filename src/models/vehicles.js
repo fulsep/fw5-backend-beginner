@@ -13,3 +13,10 @@ exports.getVehicle = (id, cb) => {
         cb(res);
     });
 };
+
+exports.createVehicle = (data, cb) => {
+    db.query('INSERT INTO `vehicles` (name, image, price, qty, category_id) VALUES (?, ?, ?, ?, ?)', [data.name, data.image, data.price, data.qty, data.category_id], (err, res)=> {
+        if(err) throw err;
+        cb(res)
+    })
+}

@@ -1,8 +1,9 @@
 const vehicles = require('express').Router();
 
-const {getVehicles, getVehicle} = require('../controllers/vehicles');
+const {getVehicles, getVehicle, createVehicle} = require('../controllers/vehicles');
 
 vehicles.get('/', getVehicles);
+vehicles.post('/', createVehicle);
 vehicles.get('/:id', getVehicle);
 
 
