@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2022 at 04:05 AM
+-- Generation Time: Feb 09, 2022 at 09:16 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -100,6 +100,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `createdAt`, `updatedAt`) VALUES
 CREATE TABLE `vehicles` (
   `id` int(11) NOT NULL,
   `name` varchar(80) NOT NULL,
+  `image` text DEFAULT NULL,
   `price` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL,
@@ -111,11 +112,25 @@ CREATE TABLE `vehicles` (
 -- Dumping data for table `vehicles`
 --
 
-INSERT INTO `vehicles` (`id`, `name`, `price`, `qty`, `category_id`, `createdAt`, `updatedAt`) VALUES
-(1, 'Toyota Alphard', 150000, 20, 1, '2022-02-02 10:05:39', '2022-02-02 10:31:09'),
-(2, 'Datsun Go+', 150000, 2, 1, '2022-02-02 10:30:01', '2022-02-02 04:29:25'),
-(3, 'Brompton', 80000, 2, 2, '2022-02-02 10:30:49', '2022-02-02 04:30:09'),
-(4, 'Toyota Vellfire', 180000, 6, 1, '2022-03-02 10:07:31', '2022-02-03 10:08:15');
+INSERT INTO `vehicles` (`id`, `name`, `image`, `price`, `qty`, `category_id`, `createdAt`, `updatedAt`) VALUES
+(1, 'Toyota Alphard', NULL, 150000, 20, 1, '2022-02-02 10:05:39', '2022-02-08 10:34:45'),
+(2, 'Datsun Go+', NULL, 150000, 2, 1, '2022-02-02 10:30:01', '2022-02-08 10:34:45'),
+(3, 'Brompton', NULL, 80000, 2, 2, '2022-02-02 10:30:49', '2022-02-08 10:34:45'),
+(4, 'Toyota Vellfire', NULL, 180000, 6, 1, '2022-03-02 10:07:31', '2022-02-08 10:34:45'),
+(5, 'Egg', 'uploads/egg-1644293086824-699112319.jpg', 150000, 40, 2, '2022-02-08 11:04:46', '2022-02-09 14:58:44'),
+(6, 'Egg Bike', 'uploads/egg-1644293118168-436001530.jpg', 150000, 5, 2, '2022-02-08 11:05:18', NULL),
+(7, 'Egg Bike', 'uploads/egg-1644293716155-725996611.jpg', 150000, 5, 2, '2022-02-08 11:15:16', NULL),
+(8, 'Egg Bike', 'uploads/egg-1644293799336-608278001.jpg', 150000, 5, 2, '2022-02-08 11:16:39', NULL),
+(9, 'Egg Bike', NULL, 150000, 5, 2, '2022-02-08 11:19:35', NULL),
+(10, 'Egg Bike', NULL, 150000, 5, 2, '2022-02-08 11:21:18', NULL),
+(11, 'Egg Bike', NULL, 150000, 5, 2, '2022-02-08 11:21:40', NULL),
+(12, 'Egg Bike', 'uploads/egg-1644294126469-100917811.jpg', 150000, 5, 2, '2022-02-08 11:22:06', NULL),
+(13, 'Egg Bike', 'uploads/L10 - Sorting-1644294195589-694198282.pdf', 150000, 5, 2, '2022-02-08 11:23:15', NULL),
+(14, 'Egg Bike', 'uploads/L10 - Sorting-1644294289418-408721835.pdf', 150000, 5, 2, '2022-02-08 11:24:49', NULL),
+(15, 'Egg Bike', 'uploads/egg-1644295046795-98482441.jpg', 150000, 5, 2, '2022-02-08 11:37:26', NULL),
+(16, 'Egg Bike', 'uploads/Fresh-eggs-in-a-dish-transparent-PNG-1644296134499-535372533.png', 150000, 5, 2, '2022-02-08 11:55:34', NULL),
+(17, 'Egg Bike', 'uploads/anim_egg-1644296142951-877810931.gif', 150000, 5, 2, '2022-02-08 11:55:42', NULL),
+(18, 'Egg Bike', 'uploads/egg-1644296150696-240025202.jpg', 150000, 5, 2, '2022-02-08 11:55:50', NULL);
 
 --
 -- Indexes for dumped tables
@@ -174,7 +189,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vehicles`
 --
 ALTER TABLE `vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
