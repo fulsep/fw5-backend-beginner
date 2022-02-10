@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const { APP_SECRET } = process.env;
 
 exports.verifyUser = (req, res, next) => {
-  const auth = req.headers.authorization; // Bearer djihasuiodhasoid
+  const auth = req.headers.authorization;
   if (auth.startsWith('Bearer')) {
     const token = auth.split(' ')[1];
     if (token) {
