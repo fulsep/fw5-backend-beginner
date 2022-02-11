@@ -7,8 +7,22 @@ exports.createUser = (data) => new Promise((resolve, reject) => {
   });
 });
 
+exports.updateUser = (data, id) => new Promise((resolve, reject) => {
+  db.query('UPDATE `users` SET ? WHERE id=?', [data, id], (err, res) => {
+    if (err) reject(err);
+    resolve(res);
+  });
+});
+
 exports.getUserByUsername = (username) => new Promise((resolve, reject) => {
-  db.query('SELECT id, username, password FROM users WHERE username=?', [username], (err, res) => {
+  db.query('SELECT id, username, password FROM users WHERE username=? OR email=?', [username, username], (err, res) => {
+    if (err) reject(err);
+    resolve(res);
+  });
+});
+
+exports.getUserById = (id) => new Promise((resolve, reject) => {
+  db.query('SELECT id, username, email, password FROM users WHERE id=?', [id], (err, res) => {
     if (err) reject(err);
     resolve(res);
   });
