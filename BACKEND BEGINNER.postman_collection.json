@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "57c41b5a-d8e8-4fcc-9fa6-3d6a2f1d07bc",
+		"_postman_id": "0b9e6aec-74d8-4e92-b1cb-6701299f0cb0",
 		"name": "BACKEND BEGINNER",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -35,18 +35,43 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "",
+									"value": "Guest Other",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "",
+									"value": "fahrul@mail.com",
 									"type": "text"
 								},
 								{
 									"key": "birthdate",
-									"value": "",
+									"value": "1990/01/01",
 									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "default"
+								},
+								{
+									"key": "gender",
+									"value": "Male",
+									"type": "default"
+								},
+								{
+									"key": "address",
+									"value": "Indonesia",
+									"type": "default"
+								},
+								{
+									"key": "phone",
+									"value": "081222333444",
+									"type": "default"
 								}
 							]
 						},
@@ -202,6 +227,135 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "fahrul",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "6666",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VERIFY",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/auth/verify",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FORGOT PASSWORD",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "fahrul@mail.com",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "408499",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "6666",
+									"type": "default"
+								},
+								{
+									"key": "confirmPassword",
+									"value": "6666",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/forgotPassword",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"forgotPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

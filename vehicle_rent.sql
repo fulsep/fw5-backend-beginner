@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2022 at 09:16 AM
+-- Generation Time: Feb 11, 2022 at 05:07 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -45,6 +45,21 @@ INSERT INTO `categories` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `forgot_request`
+--
+
+CREATE TABLE `forgot_request` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `code` varchar(6) NOT NULL,
+  `isExpired` tinyint(4) NOT NULL DEFAULT 0,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `histories`
 --
 
@@ -64,10 +79,10 @@ CREATE TABLE `histories` (
 --
 
 INSERT INTO `histories` (`id`, `rentStartDate`, `rentEndDate`, `prepayment`, `vehicle_id`, `user_id`, `createdAt`, `updatedAt`) VALUES
-(1, '2022-02-02', '2022-02-04', 0, 4, 2, '2022-02-02 10:06:36', '2022-02-03 10:13:55'),
-(2, '2022-02-02', '2022-02-04', 0, 4, 3, '2022-02-03 10:13:07', '2022-02-03 10:13:55'),
-(3, '2022-02-03', '2022-02-05', 0, 4, 3, '2022-02-03 10:13:07', '2022-02-03 10:13:55'),
-(4, '2022-02-02', '2022-02-04', 0, 2, 2, '2022-02-03 10:15:20', '2022-02-03 04:15:06');
+(1, '2022-02-02', '2022-02-04', 0, 4, NULL, '2022-02-02 10:06:36', '2022-02-03 10:13:55'),
+(2, '2022-02-02', '2022-02-04', 0, 4, NULL, '2022-02-03 10:13:07', '2022-02-03 10:13:55'),
+(3, '2022-02-03', '2022-02-05', 0, 4, NULL, '2022-02-03 10:13:07', '2022-02-03 10:13:55'),
+(4, '2022-02-02', '2022-02-04', 0, 2, NULL, '2022-02-03 10:15:20', '2022-02-03 04:15:06');
 
 -- --------------------------------------------------------
 
@@ -79,6 +94,12 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(80) NOT NULL,
   `email` varchar(80) NOT NULL,
+  `gender` enum('Male','Female') NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `address` text DEFAULT NULL,
+  `username` varchar(80) NOT NULL,
+  `birthdate` date DEFAULT NULL,
+  `password` varchar(100) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `updatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -87,9 +108,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `createdAt`, `updatedAt`) VALUES
-(2, 'Guest 1', 'guest1@mail.com', '2022-02-02 10:22:40', '2022-02-03 02:06:18'),
-(3, 'Guest 2', 'guest2@mail.com', '2022-02-02 10:22:54', '2022-02-02 04:22:45');
+INSERT INTO `users` (`id`, `name`, `email`, `gender`, `phone`, `address`, `username`, `birthdate`, `password`, `createdAt`, `updatedAt`) VALUES
+(103, 'Guest Other', 'guestother2@mail.com', 'Male', '081222333444', 'Indonesia', 'guestother2', '1990-01-01', '$2b$10$S0/9zgL7rIHOyOYGO1xGVOZ3m9R9b.UI2eBSDQKnVK0SIGQmS4T5C', '2022-02-10 10:25:35', NULL),
+(104, 'Guest Other', 'admin@mail.com', 'Male', '081222333444', 'Indonesia', 'admin', '1990-01-01', '$2b$10$PEpgEWaV/RiaeV5yXLX9Yuo1.LByZNuJdzsz69n.iL5K15NEnvMgy', '2022-02-10 11:21:46', '2022-02-11 10:37:16'),
+(105, 'Guest Other', 'fahrul@mail.com', 'Male', '081222333444', 'Indonesia', 'fahrul', '1990-01-01', '$2b$10$tSo5.OozCO2Dvl4cw7JGQeA9lUpQfHlRA8Bp3mGAV9JSU4cL1nnKu', '2022-02-11 10:45:59', '2022-02-11 10:54:45');
 
 -- --------------------------------------------------------
 
@@ -143,6 +165,13 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `forgot_request`
+--
+ALTER TABLE `forgot_request`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `histories`
 --
 ALTER TABLE `histories`
@@ -174,6 +203,12 @@ ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `forgot_request`
+--
+ALTER TABLE `forgot_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `histories`
 --
 ALTER TABLE `histories`
@@ -183,7 +218,7 @@ ALTER TABLE `histories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `vehicles`
@@ -194,6 +229,12 @@ ALTER TABLE `vehicles`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `forgot_request`
+--
+ALTER TABLE `forgot_request`
+  ADD CONSTRAINT `forgot_request_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `histories`
